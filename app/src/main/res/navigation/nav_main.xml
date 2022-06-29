@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/contact_frag">
+
+    <fragment
+        android:id="@+id/contact_frag"
+        android:name="com.example.cs496_1stweek.contact.ContactFragment"
+        android:label="contact_frag"
+        tools:layout="@layout/contact_frag" />
+    <fragment
+        android:id="@+id/gallery_frag"
+        android:name="com.example.cs496_1stweek.gallery.GalleryFragment"
+        android:label="gallery_frag"
+        tools:layout="@layout/gallery_frag" />
+    <fragment
+        android:id="@+id/item_frag"
+        android:name="com.example.cs496_1stweek.item.ItemFragment"
+        android:label="item_frag"
+        tools:layout="@layout/item_frag" />
+
+
+</navigation>
