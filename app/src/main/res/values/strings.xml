@@ -1,11 +1,5 @@
 <resources>
-    <string name="app_name">cs496_1stWeek</string>
-    <string name="recycleview1">111</string>
-    <string name="recycleview2">222</string>
-    <string name="recycleview3">333</string>
-    <string name="recycleview4">444</string>
-    <string name="recycleview5">555</string>
-    <string name="recycleview6">666</string>
+    <string name="app_name">몰입캠프 1주차</string>
 
 
 </resources>
