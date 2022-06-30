@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 
 class ContactFragment : Fragment() {
@@ -13,7 +14,12 @@ class ContactFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.contact_frag, container, false)
+        val contact_view = inflater.inflate(R.layout.contact_frag, container, false)
+        val recycleView: RecyclerView = contact_view.findViewById(R.id.contact_recycler_view)
+        val myDataset = ContactItem().loadRecycleview()
+
+        recycleView.adapter = ContactAdapter(this, myDataset)
+        return contact_view
     }
 }
 
