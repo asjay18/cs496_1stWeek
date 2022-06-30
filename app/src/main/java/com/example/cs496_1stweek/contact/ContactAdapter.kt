@@ -12,7 +12,7 @@ import com.example.cs496_1stweek.R
 
 class ContactAdapter (
     private val context: ContactFragment,
-    private val dataset: List<RecycleView>
+    private var dataset: List<RecycleView>
 ) : RecyclerView.Adapter<ContactAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val pic: ImageView = view.findViewById(R.id.contact_pic)
@@ -40,4 +40,5 @@ class ContactAdapter (
     override fun getItemCount(): Int {
         return dataset.size
     }
+
 }
