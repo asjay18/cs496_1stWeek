@@ -30,7 +30,6 @@ class ContactFragment : Fragment() {
     ): View? {
         val contact_view = inflater.inflate(R.layout.contact_frag, container, false)
         val recycleView: RecyclerView = contact_view.findViewById(R.id.contact_recycler_view)
-        val myDataset = ContactItem().loadRecycleview()
 
         val contactItemList = mutableListOf<RecycleView>()
         // 주소록
@@ -39,9 +38,9 @@ class ContactFragment : Fragment() {
         val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
         // 표시할 정보
         val projections = arrayOf(
-            //ContactsContract.CommonDataKinds.Photo.PHOTO_FILE_ID,
             ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-            ContactsContract.CommonDataKinds.Phone.NUMBER
+            ContactsContract.CommonDataKinds.Phone.NUMBER,
+            ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI,
         )
 
         val requestPermissionLauncher =
@@ -53,11 +52,11 @@ class ContactFragment : Fragment() {
                         requireActivity().contentResolver.query(addressUri, projections, null, null)
                     while(cursor?.moveToNext() == true) {
                         Log.d("hello","counting")
-                        val id = cursor.getString(0).toInt()
-                        val name = cursor.getString(1)
-                        val number = cursor.getString(2)
+                        val name = cursor.getString(0)
+                        val number = cursor.getString(1)
+                        var pic = cursor.getString(2)
                         // 개별 전화번호 데이터 생성
-                        val phone = RecycleView(id, name, number)
+                        val phone = RecycleView(pic, name, number)
 
                         // 결과목록에 더하기
                         contactItemList.add(phone)
@@ -70,25 +69,20 @@ class ContactFragment : Fragment() {
 
         when{
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED -> {
-                Log.d("debuggigngign", "I got permission")
-                Log.d("debuggigngign", addressUri.toString())
-                Log.d("debuggigngign", projections[0])
-                Log.d("debuggigngign", projections[1])
-                //Log.d("debuggigngign", projections[2])
                 val cursor =
                     requireActivity().contentResolver.query(phoneUri, projections, null, null, null)
-                Log.d("debuggigngign", "I got permission2")
+
                 while(cursor?.moveToNext() == true) {
-                    //val id = cursor.getString(0).toInt()
-                    val name = cursor.getString(0)//val name = cursor.getString(1)
-                    val number = cursor.getString(1)//val number = cursor.getString(2)
+                    val name = cursor.getString(0)
+                    val number = cursor.getString(1)
+                    var pic = cursor.getString(2)
                     // 개별 전화번호 데이터 생성
-                    val phone = RecycleView(0,name, number)//val phone = RecycleView(id, name, number)
+                    if(pic==null) pic="null"
+                    val phone = RecycleView(pic!!, name, number)//val phone = RecycleView(id, name, number)
 
                     // 결과목록에 더하기
                     contactItemList.add(phone)
                 }
-                Log.d("debuggigngign", "I got permission3")
             }
             else->{
                 Toast.makeText(getActivity(),"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();

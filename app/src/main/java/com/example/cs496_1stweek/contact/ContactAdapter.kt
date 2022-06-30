@@ -1,10 +1,12 @@
 package com.example.cs496_1stweek.contact
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 
@@ -26,7 +28,11 @@ class ContactAdapter (
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-        holder.pic.setImageResource(item.pic)
+        if(item.pic != "null") {
+            holder.pic.setImageURI(item.pic.toUri())
+        }else{
+            holder.pic.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
         holder.contactName.text = item.name
         holder.phoneNum.text = item.phoneNum
     }
