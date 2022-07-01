@@ -23,10 +23,10 @@ class GalleryFragment : Fragment() {
         val galleryItemList = mutableListOf<GalleryItem>()
         val imagesIterator = GalleryFileRead().main(requireContext())?.iterator()
         while(imagesIterator!!.hasNext()) {
-            val imageuri = Uri.parse("file:///data/user/0/com.example.cs496_1stweek/files/" + imagesIterator.next())
-            galleryItemList.add(GalleryItem(imageuri.toString()))
+            val imageuri = "file:///data/user/0/com.example.cs496_1stweek/files/" + imagesIterator.next()
+            Log.d("check", imageuri.takeLast(10))
+            galleryItemList.add(GalleryItem(imageuri))
         }
-        Log.d("checking", galleryItemList.size.toString())
         return galleryItemList
     }
 
@@ -45,15 +45,17 @@ class GalleryFragment : Fragment() {
         }
 
         recycleView.adapter = adapter
+        //GalleryFileDelete().main(requireContext(), filename)
 
         //gallery addImage fab
         val fab: FloatingActionButton = galleryView.findViewById(R.id.addImage)
         val selectPictureLauncher = registerForActivityResult(ActivityResultContracts.GetContent()){
-            val imageUri = it
-            val newuri = GalleryFileWrite().main(requireContext(), imageUri)
-            galleryItemList.add(GalleryItem(newuri.toString()))
-            Log.d("checking43", newuri.toString())
-            adapter.notifyDataSetChanged()
+            if(it != null) {
+                val imageUri = it
+                val newuri = GalleryFileWrite().main(requireContext(), imageUri).toString()
+                galleryItemList.add(GalleryItem(newuri))
+                adapter.notifyDataSetChanged()
+            }
         }
         fab.setOnClickListener {
             selectPictureLauncher.launch("image/*")

@@ -28,7 +28,6 @@ class GalleryAdapter (
     }
 
     override fun getItemCount(): Int {
-        Log.d("checking1",dataset.size.toString())
         return dataset.size
     }
 }
