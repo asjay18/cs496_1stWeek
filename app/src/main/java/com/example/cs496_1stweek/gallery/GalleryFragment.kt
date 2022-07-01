@@ -2,6 +2,7 @@ package com.example.cs496_1stweek.gallery
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,21 +16,19 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class GalleryFragment : Fragment() {
 
-    /*private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        if(it.resultCode == Activity.RESULT_OK) {
-            var imageUri = it.data?.data
-            Log.d("filename", imageUri.toString())
-            context?.let { it1 ->
-                if (imageUri != null) {
-                    Log.d("filename0", imageUri.toString())
-                    val filename = GalleryFileWrite().main(it1, imageUri)
-                    //GalleryFileRead().main(it1, filename)
-                }
-            }
+    private val galleryItemList = mutableListOf<GalleryItem>()
+    private val adapter = GalleryAdapter(galleryItemList)
 
+    fun loadImages() : MutableList<GalleryItem>{
+        val galleryItemList = mutableListOf<GalleryItem>()
+        val imagesIterator = GalleryFileRead().main(requireContext())?.iterator()
+        while(imagesIterator!!.hasNext()) {
+            val imageuri = Uri.parse("file:///data/user/0/com.example.cs496_1stweek/files/" + imagesIterator.next())
+            galleryItemList.add(GalleryItem(imageuri.toString()))
         }
-    }*/
-
+        Log.d("checking", galleryItemList.size.toString())
+        return galleryItemList
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,26 +36,30 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val galleryView = inflater.inflate(R.layout.gallery_frag, container, false)
-
-        //gallery recyclerview
         val recycleView: RecyclerView = galleryView.findViewById(R.id.gallery_recycler_view)
-        val galleryItemList = mutableListOf<GalleryItem>()
-        val adapter = GalleryAdapter(galleryItemList)
+        
+
+        val iterator = loadImages().iterator()
+        while(iterator.hasNext()) {
+            galleryItemList.add(iterator.next())
+        }
 
         recycleView.adapter = adapter
-
 
         //gallery addImage fab
         val fab: FloatingActionButton = galleryView.findViewById(R.id.addImage)
         val selectPictureLauncher = registerForActivityResult(ActivityResultContracts.GetContent()){
             val imageUri = it
-            val filename = GalleryFileWrite().main(requireContext(), imageUri)
+            val newuri = GalleryFileWrite().main(requireContext(), imageUri)
+            galleryItemList.add(GalleryItem(newuri.toString()))
+            Log.d("checking43", newuri.toString())
+            adapter.notifyDataSetChanged()
         }
         fab.setOnClickListener {
             selectPictureLauncher.launch("image/*")
         }
-        GalleryFileRead().main(requireContext())
-
+        //loadImages()
         return galleryView
     }
+
 }

@@ -26,7 +26,7 @@ class GalleryFileWrite {
             }
     }
 
-    fun main(context: Context, uri : Uri) : String {
+    fun main(context: Context, uri : Uri) : Uri {
         //val filename = uri.hashCode().toString()
         /*val filepath = convertUriToPath(context, uri)
         if (filepath != null) {
@@ -48,7 +48,6 @@ class GalleryFileWrite {
 
         val uri = Uri.fromFile(context.getFileStreamPath(file))
 
-        Log.d("filename5", uri.toString())
-        return file
+        return uri
     }
 }
