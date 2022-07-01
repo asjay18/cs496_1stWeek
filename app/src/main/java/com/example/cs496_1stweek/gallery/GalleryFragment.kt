@@ -21,6 +21,7 @@ class GalleryFragment : Fragment() {
         val adapter = GalleryAdapter(galleryItemList)
 
         recycleView.adapter = adapter
+        //context?.let { GalleryFileWrite().main(it, ) }
         return galleryView
         //return inflater.inflate(R.layout.gallery_frag, container, false)
     }
