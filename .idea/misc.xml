@@ -14,10 +14,9 @@
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/layout/gallery_items.xml" value="0.22135416666666666" />
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/layout/item_frag.xml" value="0.24728260869565216" />
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/menu/bottom_nav_menu.xml" value="0.26614583333333336" />
-
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

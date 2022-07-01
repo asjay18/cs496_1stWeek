@@ -16,8 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 
 class ContactFragment : Fragment() {
+
     @SuppressLint("Recycle")
-    fun loadcontact() : MutableList<RecycleView> {
+    fun loadContact() : MutableList<ContactItem> {
         // 전화번호
         val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
         //val phoneUri = ContactsContract.Contacts.CONTENT_URI
@@ -26,7 +27,7 @@ class ContactFragment : Fragment() {
             ContactsContract.CommonDataKinds.Phone.NUMBER,
             ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI,
         )
-        val contactItemList = mutableListOf<RecycleView>()
+        val contactItemList = mutableListOf<ContactItem>()
         val cursor =
             requireActivity().contentResolver.query(phoneUri, projections, null, null, null)
 
@@ -36,7 +37,7 @@ class ContactFragment : Fragment() {
             var pic = cursor.getString(2)
             // 개별 전화번호 데이터 생성
             if(pic==null) pic="null"
-            val phone = RecycleView(pic, name, number)//val phone = RecycleView(id, name, number)
+            val phone = ContactItem(pic, name, number)
 
             // 결과목록에 더하기
             contactItemList.add(phone)
@@ -44,49 +45,48 @@ class ContactFragment : Fragment() {
         return contactItemList
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val contact_view = inflater.inflate(R.layout.contact_frag, container, false)
-        val recycleView: RecyclerView = contact_view.findViewById(R.id.contact_recycler_view)
+        val contactView = inflater.inflate(R.layout.contact_frag, container, false)
+        val recycleView: RecyclerView = contactView.findViewById(R.id.contact_recycler_view)
 
-        val contactItemList = mutableListOf<RecycleView>()
-        val adapter = ContactAdapter(this, contactItemList)
+        val contactItemList = mutableListOf<ContactItem>()
+        val adapter = ContactAdapter(contactItemList)
 
         val requestPermissionLauncher =
             registerForActivityResult(
                 ActivityResultContracts.RequestPermission()
             ) { isGranted: Boolean ->
                 if (isGranted) {
-                    val numbersIterator = loadcontact().iterator()
+                    val numbersIterator = loadContact().iterator()
                     while(numbersIterator.hasNext()) {
                         contactItemList.add(numbersIterator.next())
                     }
                     adapter.notifyDataSetChanged()
                 } else {
-                    Toast.makeText(getActivity(),"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity,"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();
                 }
             }
 
         when{
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED -> {
-                val numbersIterator = loadcontact().iterator()
+                val numbersIterator = loadContact().iterator()
                 while(numbersIterator.hasNext()) {
                     contactItemList.add(numbersIterator.next())
                 }
             }
             else->{
-                Toast.makeText(getActivity(),"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity,"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();
                 requestPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
             }
         }
 
         recycleView.adapter = adapter
-        return contact_view
+        return contactView
     }
 }
 
