@@ -1,9 +1,11 @@
 package com.example.cs496_1stweek.gallery
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 
@@ -21,15 +23,12 @@ class GalleryAdapter (
 
     override fun onBindViewHolder(holder: GalleryAdapter.ItemViewHolder, position: Int) {
         val item = dataset[position]
-        holder.pic.setImageResource(R.drawable.ic_emoji)
-        /*if(item.pic != "null") {
-            holder.pic.setImageURI(item.pic.toUri())
-        }else{
-            holder.pic.setImageResource(R.drawable.ic_emoji)
-        }*/
+        holder.pic.setImageURI(item.pic.toUri())
+
     }
 
     override fun getItemCount(): Int {
+        Log.d("checking1",dataset.size.toString())
         return dataset.size
     }
 }

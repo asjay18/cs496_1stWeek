@@ -17,6 +17,8 @@
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/layout/item_frag.xml" value="0.24728260869565216" />
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/menu/bottom_nav_menu.xml" value="0.26614583333333336" />
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.172" />
+        <entry key="app/src/main/res/layout/gallery_frag.xml" value="0.13229166666666667" />
+        <entry key="app/src/main/res/layout/gallery_items.xml" value="0.13229166666666667" />
       </map>
     </option>
   </component>
