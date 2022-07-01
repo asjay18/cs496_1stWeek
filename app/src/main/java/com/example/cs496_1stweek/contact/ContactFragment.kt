@@ -27,9 +27,10 @@ class ContactFragment : Fragment() {
             ContactsContract.CommonDataKinds.Phone.NUMBER,
             ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI,
         )
+        val orderBy = "upper("+ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + ") ASC"
         val contactItemList = mutableListOf<ContactItem>()
         val cursor =
-            requireActivity().contentResolver.query(phoneUri, projections, null, null, null)
+            requireActivity().contentResolver.query(phoneUri, projections, null, null, orderBy)
 
         while(cursor?.moveToNext() == true) {
             val name = cursor.getString(0)
