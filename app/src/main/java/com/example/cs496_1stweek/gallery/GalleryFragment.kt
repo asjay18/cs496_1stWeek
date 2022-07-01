@@ -18,7 +18,15 @@ class GalleryFragment : Fragment() {
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == Activity.RESULT_OK) {
             var imageUri = it.data?.data
-            Log.d("i got image", imageUri.toString())
+            Log.d("filename", imageUri.toString())
+            context?.let { it1 ->
+                if (imageUri != null) {
+                    Log.d("filename0", imageUri.toString())
+                    val filename = GalleryFileWrite().main(it1, imageUri)
+                    //GalleryFileRead().main(it1, filename)
+                }
+            }
+
         }
     }
 
