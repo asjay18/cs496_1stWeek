@@ -9,6 +9,13 @@ import java.io.*
 
 class GalleryFileWrite {
 
+    fun getRandomString(length: Int) : String {
+        val charset = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz0123456789"
+        return (1..length)
+            .map { charset.random() }
+            .joinToString("")
+    }
+
     fun convertUriToPath(context: Context, contentUri: Uri?): String? {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         return context.contentResolver.query(contentUri!!, projection, null, null, null)
@@ -20,14 +27,13 @@ class GalleryFileWrite {
     }
 
     fun main(context: Context, uri : Uri) : String {
-        val filename = uri.hashCode().toString()
-
+        //val filename = uri.hashCode().toString()
         /*val filepath = convertUriToPath(context, uri)
         if (filepath != null) {
             Log.d("filename3", filepath)
         }*/
 
-        val file : String = uri.hashCode().toString()
+        val file : String = uri.hashCode().toString() + getRandomString(5)
 
         val outputStream : FileOutputStream = context.openFileOutput(file, Context.MODE_PRIVATE)
         val inputStream = context.contentResolver.openInputStream(uri)!!

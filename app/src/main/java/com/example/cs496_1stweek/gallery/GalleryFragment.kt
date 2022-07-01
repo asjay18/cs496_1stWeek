@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class GalleryFragment : Fragment() {
 
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+    /*private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == Activity.RESULT_OK) {
             var imageUri = it.data?.data
             Log.d("filename", imageUri.toString())
@@ -28,7 +28,7 @@ class GalleryFragment : Fragment() {
             }
 
         }
-    }
+    }*/
 
 
     override fun onCreateView(
@@ -48,13 +48,14 @@ class GalleryFragment : Fragment() {
 
         //gallery addImage fab
         val fab: FloatingActionButton = galleryView.findViewById(R.id.addImage)
-
-        fab.setOnClickListener {
-            val photoPickerIntent = Intent(Intent.ACTION_PICK)
-            photoPickerIntent.type = "image/*"
-            startForResult.launch(photoPickerIntent)
+        val selectPictureLauncher = registerForActivityResult(ActivityResultContracts.GetContent()){
+            val imageUri = it
+            val filename = GalleryFileWrite().main(requireContext(), imageUri)
         }
-        //context?.let { GalleryFileWrite().main(it, ) }
+        fab.setOnClickListener {
+            selectPictureLauncher.launch("image/*")
+        }
+        GalleryFileRead().main(requireContext())
 
         return galleryView
     }
