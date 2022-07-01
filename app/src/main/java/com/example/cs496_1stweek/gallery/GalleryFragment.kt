@@ -1,8 +1,5 @@
 package com.example.cs496_1stweek.gallery
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,7 +35,7 @@ class GalleryFragment : Fragment() {
     ): View? {
         val galleryView = inflater.inflate(R.layout.gallery_frag, container, false)
         val recycleView: RecyclerView = galleryView.findViewById(R.id.gallery_recycler_view)
-        
+        recycleView.layoutManager = LinearLayoutManager(context)
 
         val iterator = loadImages().iterator()
         while(iterator.hasNext()) {
