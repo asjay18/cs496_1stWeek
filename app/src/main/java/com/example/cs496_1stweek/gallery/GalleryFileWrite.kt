@@ -5,7 +5,7 @@ import android.net.Uri
 import java.io.IOException
 
 class GalleryFileWrite {
-    @Throws(IOException::class)
+
     private fun readBytes(context: Context, uri: Uri): ByteArray? =
         context.contentResolver.openInputStream(uri)?.buffered()?.use { it.readBytes() }
 

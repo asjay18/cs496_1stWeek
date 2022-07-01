@@ -17,4 +17,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="411dp"
+        android:layout_marginBottom="274dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gallery_pic" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.cs496_1stweek.gallery
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class GalleryAdapter (
     }
 
     override fun onBindViewHolder(holder: GalleryAdapter.ItemViewHolder, position: Int) {
+        Log.d("gotimage3",position.toString())
         val item = dataset[position]
         holder.pic.setImageResource(R.drawable.ic_emoji)
         /*if(item.pic != "null") {
@@ -31,5 +33,10 @@ class GalleryAdapter (
 
     override fun getItemCount(): Int {
         return dataset.size
+    }
+
+    fun addItem(item :GalleryItem) {
+        GalleryAdapter(dataset+item)
+        //notifyDataSetChanged()
     }
 }
