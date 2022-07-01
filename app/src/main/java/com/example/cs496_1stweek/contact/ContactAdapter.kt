@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 
 class ContactAdapter (
-    private val context: ContactFragment,
-    private var dataset: List<RecycleView>
+    private var dataset: List<ContactItem>
 ) : RecyclerView.Adapter<ContactAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val pic: ImageView = view.findViewById(R.id.contact_pic)
@@ -31,7 +30,7 @@ class ContactAdapter (
         if(item.pic != "null") {
             holder.pic.setImageURI(item.pic.toUri())
         }else{
-            holder.pic.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            holder.pic.setImageResource(R.drawable.ic_emoji)
         }
         holder.contactName.text = item.name
         holder.phoneNum.text = item.phoneNum

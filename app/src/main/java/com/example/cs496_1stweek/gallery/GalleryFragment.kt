@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 
 class GalleryFragment : Fragment() {
@@ -13,6 +14,14 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.gallery_frag, container, false)
+        val galleryView = inflater.inflate(R.layout.gallery_frag, container, false)
+        val recycleView: RecyclerView = galleryView.findViewById(R.id.gallery_recycler_view)
+
+        val galleryItemList = mutableListOf<GalleryItem>()
+        val adapter = GalleryAdapter(galleryItemList)
+
+        recycleView.adapter = adapter
+        return galleryView
+        //return inflater.inflate(R.layout.gallery_frag, container, false)
     }
 }
