@@ -2,9 +2,13 @@ package com.example.cs496_1stweek.gallery
 
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
+import androidx.annotation.RequiresApi
 import java.io.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class GalleryFileWrite {
@@ -26,6 +30,7 @@ class GalleryFileWrite {
             }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun main(context: Context, uri : Uri) : Uri {
         //val filename = uri.hashCode().toString()
         /*val filepath = convertUriToPath(context, uri)
@@ -33,7 +38,8 @@ class GalleryFileWrite {
             Log.d("filename3", filepath)
         }*/
 
-        val file : String = uri.hashCode().toString() + getRandomString(5)
+        val file : String = uri.hashCode().toString() + getRandomString(5) + "." + LocalDateTime.now().format(
+            DateTimeFormatter.ofPattern("YYMMddHHmm"))
 
         val outputStream : FileOutputStream = context.openFileOutput(file, Context.MODE_PRIVATE)
         val inputStream = context.contentResolver.openInputStream(uri)!!
