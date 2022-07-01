@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +19,7 @@ class GalleryFragment : Fragment() {
 
     private val galleryItemList = mutableListOf<GalleryItem>()
     private val adapter = GalleryAdapter(galleryItemList)
+
 
     fun loadImages() : MutableList<GalleryItem>{
         val galleryItemList = mutableListOf<GalleryItem>()
@@ -36,6 +40,7 @@ class GalleryFragment : Fragment() {
         val galleryView = inflater.inflate(R.layout.gallery_frag, container, false)
         val recycleView: RecyclerView = galleryView.findViewById(R.id.gallery_recycler_view)
         recycleView.layoutManager = LinearLayoutManager(context)
+
 
         val iterator = loadImages().iterator()
         while(iterator.hasNext()) {
@@ -58,6 +63,14 @@ class GalleryFragment : Fragment() {
         fab.setOnClickListener {
             selectPictureLauncher.launch("image/*")
         }
+        adapter.onItemClick = {
+            GalleryFileDelete().main(it.pic.substring(7, ))
+            galleryItemList.remove(it)
+            adapter.notifyDataSetChanged()
+
+
+        }
+
         //loadImages()
         return galleryView
     }

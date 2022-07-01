@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +17,12 @@ import java.io.File
 class GalleryAdapter (
     private var dataset: List<GalleryItem>
     ) : RecyclerView.Adapter<GalleryAdapter.ItemViewHolder>() {
+
+    var onItemClick : ((GalleryItem) -> Unit)? = null
+
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val pic: ImageView = view.findViewById(R.id.gallery_pic)
+        val delete_button : Button = view.findViewById(R.id.delete_button)
     }
 
     fun getCameraPhotoOrientation(
@@ -59,14 +64,17 @@ class GalleryAdapter (
 
     override fun onBindViewHolder(holder: GalleryAdapter.ItemViewHolder, position: Int) {
         val item = dataset[position]
-
         val rotateImage : Int = getCameraPhotoOrientation(item.pic.toUri()) //ViewGroup.context,
         Log.i("RotateImageResult", "Rotate value: $rotateImage")
         holder.pic.setImageURI(item.pic.toUri())
         holder.pic.setRotation(rotateImage.toFloat())
+        holder.delete_button.setOnClickListener {
+            onItemClick?.invoke(item)
+        }
     }
 
     override fun getItemCount(): Int {
         return dataset.size
     }
+
 }
