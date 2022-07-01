@@ -37,6 +37,7 @@ class GalleryFragment : Fragment() {
 
         recycleView.adapter = adapter
 
+
         //gallery addImage fab
         val fab: FloatingActionButton = galleryView.findViewById(R.id.addImage)
 
@@ -45,6 +46,7 @@ class GalleryFragment : Fragment() {
             photoPickerIntent.type = "image/*"
             startForResult.launch(photoPickerIntent)
         }
+        //context?.let { GalleryFileWrite().main(it, ) }
 
         return galleryView
     }
