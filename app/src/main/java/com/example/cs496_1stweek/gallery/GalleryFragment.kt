@@ -1,8 +1,5 @@
 package com.example.cs496_1stweek.gallery
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -42,6 +39,7 @@ class GalleryFragment : Fragment() {
     ): View? {
         val galleryView = inflater.inflate(R.layout.gallery_frag, container, false)
         val recycleView: RecyclerView = galleryView.findViewById(R.id.gallery_recycler_view)
+        recycleView.layoutManager = LinearLayoutManager(context)
 
 
         val iterator = loadImages().iterator()

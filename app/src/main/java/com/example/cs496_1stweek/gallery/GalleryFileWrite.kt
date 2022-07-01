@@ -39,7 +39,7 @@ class GalleryFileWrite {
         }*/
 
         val file : String = uri.hashCode().toString() + getRandomString(5) + "." + LocalDateTime.now().format(
-            DateTimeFormatter.ofPattern("YYMMddHHmm"))
+            DateTimeFormatter.ofPattern("yyMMddHHmm"))
 
         val outputStream : FileOutputStream = context.openFileOutput(file, Context.MODE_PRIVATE)
         val inputStream = context.contentResolver.openInputStream(uri)!!
