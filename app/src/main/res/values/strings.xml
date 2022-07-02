@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">몰입캠프 1주차</string>
     <string name="addImage">addImage</string>
+    <string name="delete">delete</string>
+    <string name="image">image</string>
 
 
 </resources>
