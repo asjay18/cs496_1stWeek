@@ -1,9 +1,6 @@
 package com.example.cs496_1stweek.gallery
 
 import android.content.Context
-import android.media.ExifInterface
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +10,7 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.cs496_1stweek.R
-import java.io.File
 
 
 class GalleryAdapter (
