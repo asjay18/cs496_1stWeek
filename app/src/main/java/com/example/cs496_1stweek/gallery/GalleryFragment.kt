@@ -1,6 +1,5 @@
 package com.example.cs496_1stweek.gallery
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.request.target.Target
 import com.example.cs496_1stweek.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 

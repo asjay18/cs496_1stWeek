@@ -1,6 +1,5 @@
 package com.example.cs496_1stweek.contact
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
