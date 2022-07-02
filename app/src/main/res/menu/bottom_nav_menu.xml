@@ -13,6 +13,8 @@
         android:icon="@android:drawable/ic_menu_gallery"
         android:title="gallery" />
     <item
-        android:id="@+id/item_frag"
-        android:title="Item" />
+        android:id="@+id/game_frag"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_videogame_asset_24"
+        android:title="bomb" />
 </menu>

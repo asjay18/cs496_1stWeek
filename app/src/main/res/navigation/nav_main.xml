@@ -16,10 +16,10 @@
         android:label="gallery_frag"
         tools:layout="@layout/gallery_frag" />
     <fragment
-        android:id="@+id/item_frag"
-        android:name="com.example.cs496_1stweek.item.ItemFragment"
-        android:label="item_frag"
-        tools:layout="@layout/item_frag" />
+        android:id="@+id/game_frag"
+        android:name="com.example.cs496_1stweek.game.GameFragment"
+        android:label="game_frag"
+        tools:layout="@layout/game_frag" />
 
 
 </navigation>
