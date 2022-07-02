@@ -1,5 +1,6 @@
 package com.example.cs496_1stweek.gallery
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,14 +13,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.request.target.Target
 import com.example.cs496_1stweek.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class GalleryFragment : Fragment() {
-
-    private val galleryItemList = mutableListOf<GalleryItem>()
-    private val adapter = GalleryAdapter(galleryItemList)
-
 
     fun loadImages() : MutableList<GalleryItem>{
         val galleryItemList = mutableListOf<GalleryItem>()
@@ -27,7 +25,7 @@ class GalleryFragment : Fragment() {
         while(imagesIterator!!.hasNext()) {
             val imageuri = "file:///data/user/0/com.example.cs496_1stweek/files/" + imagesIterator.next()
             Log.d("check", imageuri.takeLast(10))
-            galleryItemList.add(GalleryItem(imageuri))
+            galleryItemList.add(0, GalleryItem(imageuri))
         }
         return galleryItemList
     }
@@ -37,10 +35,11 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val galleryItemList = mutableListOf<GalleryItem>()
+        val adapter = GalleryAdapter(requireContext(), galleryItemList)
         val galleryView = inflater.inflate(R.layout.gallery_frag, container, false)
         val recycleView: RecyclerView = galleryView.findViewById(R.id.gallery_recycler_view)
         recycleView.layoutManager = LinearLayoutManager(context)
-
 
         val iterator = loadImages().iterator()
         while(iterator.hasNext()) {
@@ -56,7 +55,7 @@ class GalleryFragment : Fragment() {
             if(it != null) {
                 val imageUri = it
                 val newuri = GalleryFileWrite().main(requireContext(), imageUri).toString()
-                galleryItemList.add(GalleryItem(newuri))
+                galleryItemList.add(0, GalleryItem(newuri))
                 adapter.notifyDataSetChanged()
             }
         }
