@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class GalleryFragment : Fragment() {
 
     fun loadImages() : MutableList<GalleryItem>{
-        var galleryItemList = mutableListOf<GalleryItem>()
+        val galleryItemList = mutableListOf<GalleryItem>()
         val imagesIterator = GalleryFileRead().main(requireContext())?.iterator()
         while(imagesIterator!!.hasNext()) {
             val checkCustomString = imagesIterator.next()
