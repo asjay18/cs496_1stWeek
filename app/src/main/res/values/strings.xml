@@ -3,6 +3,7 @@
     <string name="addImage">addImage</string>
     <string name="delete">delete</string>
     <string name="image">image</string>
+    <string name="noAvailableText"> </string>
 
 
 </resources>

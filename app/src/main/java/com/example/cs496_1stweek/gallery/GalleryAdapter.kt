@@ -26,13 +26,13 @@ class GalleryAdapter (
         val uploadDate : TextView = view.findViewById(R.id.upload_date)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryAdapter.ItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.gallery_items, parent, false)
-        return GalleryAdapter.ItemViewHolder(adapterLayout)
+        return ItemViewHolder(adapterLayout)
     }
 
-    override fun onBindViewHolder(holder: GalleryAdapter.ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
         Glide.with(context)

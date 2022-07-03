@@ -12,6 +12,7 @@ import com.example.cs496_1stweek.R
 class ContactAdapter (
     private var dataset: List<ContactItem>
 ) : RecyclerView.Adapter<ContactAdapter.ItemViewHolder>() {
+
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val pic: ImageView = view.findViewById(R.id.contact_pic)
         val contactName: TextView = view.findViewById(R.id.contact_name)
