@@ -1,5 +1,6 @@
 package com.example.cs496_1stweek.game
 
+import android.content.Context
 import android.media.Image
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.cs496_1stweek.R
 
 class GameFragment : Fragment() {
@@ -22,7 +30,6 @@ class GameFragment : Fragment() {
         return randomNum.joinToString(separator = "").toInt()
     }
 
-
     private fun getResult(answer: Int,ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView) {
         if(ans1_t.text==" "||ans2_t.text==" "||ans3_t.text==" "||ans4_t.text==" "){
             Toast.makeText(requireContext(),"4자리 숫자를 입력해주세요", Toast.LENGTH_SHORT).show()
@@ -35,11 +42,12 @@ class GameFragment : Fragment() {
         var ball = 0
 
         var answerToString = answer.toString()
+        if(answer<1000){
+            answerToString = "0"+answerToString
+        }
 
         if(answer == currentAnswer.toInt()) strike = 4
         else{
-            var answerToString = answer.toString()
-            if(answer<1000){ answerToString = "0"+answerToString }
             for (i in 0 until 4) {
                 if (answerToString[i]==currentAnswer[i]) strike++
                 for (j in 0 until 4){
@@ -67,7 +75,6 @@ class GameFragment : Fragment() {
         if(life >= 0) {
             resultHistoryList.add(0, GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
             adapter.notifyDataSetChanged()
-
         }
     }
 
