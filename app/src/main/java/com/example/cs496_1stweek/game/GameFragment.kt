@@ -51,20 +51,23 @@ class GameFragment : Fragment() {
 
         val out = 3-life
 
-        if(life == 0) {
+        ans1_t.text=" "
+        ans2_t.text=" "
+        ans3_t.text=" "
+        ans4_t.text=" "
+        pos = 1
+
+        if(life <= 0) {
             val deadDialog : GameDeadPopup = GameDeadPopup(answerToString).getInstance(answerToString)
             activity?.supportFragmentManager?.let{
                 fragmentManager -> deadDialog.show(fragmentManager, "You're Dead")
             }
             Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
-        } else {
-            resultHistoryList.add(GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
+        }
+        if(life >= 0) {
+            resultHistoryList.add(0, GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
             adapter.notifyDataSetChanged()
-            ans1_t.text=" "
-            ans2_t.text=" "
-            ans3_t.text=" "
-            ans4_t.text=" "
-            pos = 1
+
         }
     }
 
@@ -156,8 +159,10 @@ class GameFragment : Fragment() {
     ): View? {
         val gameView = inflater.inflate(R.layout.game_frag, container, false)
         val gridView : GridView = gameView.findViewById(R.id.result_table)
-
         gridView.adapter = adapter
+
+        val imageview : ImageView = gameView.findViewById(R.id.imageView)
+        imageview.setImageResource(R.drawable.bombimage)
 
         val numberA = getRandomNum()
         Log.d("printed:numberToGuess", numberA.toString())
