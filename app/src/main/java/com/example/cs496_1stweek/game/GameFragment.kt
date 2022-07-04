@@ -22,16 +22,19 @@ class GameFragment : Fragment() {
         return randomNum.joinToString(separator = "").toInt()
     }
 
-    private fun getResult(answer: Int, ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView): Array<Int> {
+
+    private fun getResult(answer: Int,ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView) {
         if(ans1_t.text==" "||ans2_t.text==" "||ans3_t.text==" "||ans4_t.text==" "){
             Toast.makeText(requireContext(),"4자리 숫자를 입력해주세요", Toast.LENGTH_SHORT).show()
-            return arrayOf(0,0,0)
+            return
         }
 
         val currentAnswer : String = ans1_t.text.toString() + ans2_t.text + ans3_t.text + ans4_t.text
 
         var strike = 0
         var ball = 0
+
+        var answerToString = answer.toString()
 
         if(answer == currentAnswer.toInt()) strike = 4
         else{
@@ -49,6 +52,10 @@ class GameFragment : Fragment() {
         val out = 3-life
 
         if(life == 0) {
+            val deadDialog : GameDeadPopup = GameDeadPopup(answerToString).getInstance(answerToString)
+            activity?.supportFragmentManager?.let{
+                fragmentManager -> deadDialog.show(fragmentManager, "You're Dead")
+            }
             Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
         } else {
             resultHistoryList.add(GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
@@ -59,11 +66,6 @@ class GameFragment : Fragment() {
             ans4_t.text=" "
             pos = 1
         }
-
-        /*if(life==0) Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
-        else Toast.makeText(requireContext(),"$answer,$currentAnswer -> $strike/$ball/$out", Toast.LENGTH_SHORT).show()*/
-
-        return arrayOf(strike, ball, out)
     }
 
     private fun writeOnButtons(num:Int, ans1:ImageButton, ans2:ImageButton, ans3:ImageButton, ans4:ImageButton, ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView) {
