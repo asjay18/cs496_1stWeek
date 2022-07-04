@@ -21,6 +21,7 @@
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/menu/bottom_nav_menu.xml" value="0.26614583333333336" />
         <entry key="..\:/programs/madcamp/cs496_1stWeek/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_baseline_videogame_asset_24 2.xml" value="0.2975" />
         <entry key="app/src/main/res/drawable/ic_emoji.xml" value="0.1735" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1735" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1735" />
@@ -29,8 +30,8 @@
         <entry key="app/src/main/res/layout/contact_items.xml" value="0.3747744795204937" />
         <entry key="app/src/main/res/layout/gallery_frag.xml" value="0.13229166666666667" />
         <entry key="app/src/main/res/layout/gallery_items.xml" value="0.33748626708984375" />
-        <entry key="app/src/main/res/layout/game_frag.xml" value="0.2537811279296875" />
-        <entry key="app/src/main/res/layout/game_history_items.xml" value="0.8023376464843752" />
+        <entry key="app/src/main/res/layout/game_frag.xml" value="0.27075042724609377" />
+        <entry key="app/src/main/res/layout/game_history_items.xml" value="0.37946472167968776" />
         <entry key="app/src/main/res/layout/item_frag.xml" value="0.15172101449275363" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.17864583333333334" />
       </map>
