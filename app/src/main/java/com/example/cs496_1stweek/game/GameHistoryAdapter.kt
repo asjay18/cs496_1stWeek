@@ -26,6 +26,8 @@ class GameHistoryAdapter (
         ball.text = item.ball
         val out : TextView = view!!.findViewById(R.id.out_text)
         out.text = item.out
+        val count : TextView = view!!.findViewById(R.id.history_count)
+        count.text = item.count
 
         return view
 

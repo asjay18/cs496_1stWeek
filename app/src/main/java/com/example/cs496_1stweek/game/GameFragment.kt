@@ -92,7 +92,7 @@ class GameFragment : Fragment(), DialogInterface {
             Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
         }
         if(life >= 0) {
-            resultHistoryList.add(0, GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
+            resultHistoryList.add(0, GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString(), (resultHistoryList.size+1).toString()))
             adapter.notifyDataSetChanged()
         }
     }
