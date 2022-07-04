@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.GridView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -14,6 +15,8 @@ import com.example.cs496_1stweek.R
 class GameFragment : Fragment() {
     private var pos = 1
     private var life = 3
+    private val resultHistoryList = mutableListOf<GameHistoryItem>()
+    private val adapter = GameHistoryAdapter(resultHistoryList)
 
     private fun getRandomNum(): Int {
         val randomNum = (0..9).shuffled().take(4)
@@ -45,8 +48,16 @@ class GameFragment : Fragment() {
         }
 
         val out = 3-life
-        if(life==0) Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
-        else Toast.makeText(requireContext(),"$answer,$currentAnswer -> $strike/$ball/$out", Toast.LENGTH_SHORT).show()
+
+        if(life == 0) {
+            Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
+        } else {
+            resultHistoryList.add(GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
+            adapter.notifyDataSetChanged()
+        }
+
+        /*if(life==0) Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
+        else Toast.makeText(requireContext(),"$answer,$currentAnswer -> $strike/$ball/$out", Toast.LENGTH_SHORT).show()*/
 
         return arrayOf(strike, ball, out)
     }
@@ -113,6 +124,9 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val gameView = inflater.inflate(R.layout.game_frag, container, false)
+        val gridView : GridView = gameView.findViewById(R.id.result_table)
+
+        gridView.adapter = adapter
 
         val numberA = getRandomNum()
         Log.d("printed:numberToGuess", numberA.toString())
