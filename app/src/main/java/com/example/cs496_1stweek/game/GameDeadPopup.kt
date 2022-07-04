@@ -23,6 +23,7 @@ class GameDeadPopup(num: String) : DialogFragment() {
         answerTextView.text = num1
         retryButton.setOnClickListener {
             dismiss()
+            //GameFragment().refreshPage()
             //refresh
         }
         return view

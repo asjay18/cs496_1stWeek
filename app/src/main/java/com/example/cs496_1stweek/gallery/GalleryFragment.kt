@@ -67,8 +67,6 @@ class GalleryFragment : Fragment() {
             GalleryFileDelete().main(it.pic.substring(7, ))
             galleryItemList.remove(it)
             adapter.notifyDataSetChanged()
-
-
         }
         Log.d("checking", galleryItemList.size.toString())
         //loadImages()
