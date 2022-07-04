@@ -22,12 +22,12 @@ class GameHistoryAdapter (
 
         val input : TextView = view!!.findViewById(R.id.input_number)
         input.text = item.input
-        val strike : TextView = view!!.findViewById(R.id.strike)
-        strike.text = "⬤" + item.strike
-        val ball : TextView = view!!.findViewById(R.id.ball)
-        ball.text = "⬤" + item.ball
-        val out : TextView = view!!.findViewById(R.id.out)
-        out.text = "⬤" + item.out
+        val strike : TextView = view!!.findViewById(R.id.strike_text)
+        strike.text = item.strike
+        val ball : TextView = view!!.findViewById(R.id.ball_text)
+        ball.text = item.ball
+        val out : TextView = view!!.findViewById(R.id.out_text)
+        out.text = item.out
         return view
 
     }

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="10dp"
@@ -11,7 +11,7 @@
     android:longClickable="false">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:baselineAligned="false"
         android:clickable="false"
@@ -19,79 +19,144 @@
         android:longClickable="false"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/input_number"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_weight="50"
-            android:clickable="false"
-            android:gravity="center_horizontal"
-            android:linksClickable="false"
-            android:longClickable="false"
-            android:text="6789"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:autoSizeStepGranularity="2sp"
-            app:autoSizeTextType="uniform" />
-
         <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center|center_horizontal|center_vertical"
-            android:layout_weight="50"
-            android:baselineAligned="false"
-            android:clickable="false"
-            android:gravity="center_horizontal|center_vertical"
-            android:longClickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/strike"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="5dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:letterSpacing="0.1"
-                android:text="⬤1"
-                android:textColor="#009688"
-                android:textSize="18sp"
-                app:autoSizeStepGranularity="2sp"
-                app:autoSizeTextType="uniform" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="fill"
+                    android:clickable="false"
+                    android:gravity="center_horizontal"
+                    android:linksClickable="false"
+                    android:longClickable="false"
+                    android:text="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="none" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/ball"
-                android:layout_width="0dp"
+                android:id="@+id/input_number"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:letterSpacing="0.1"
-                android:text="⬤2"
-                android:textColor="#FF9800"
-                android:textSize="18sp"
+                android:layout_gravity="fill"
+                android:layout_marginStart="5sp"
+                android:layout_marginEnd="5sp"
+                android:clickable="false"
+                android:gravity="center_horizontal"
+                android:linksClickable="false"
+                android:longClickable="false"
+                android:text="6789"
+                android:textSize="30sp"
+                android:textStyle="bold"
                 app:autoSizeStepGranularity="2sp"
                 app:autoSizeTextType="uniform" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/out"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:letterSpacing="0.1"
-                android:text="⬤3"
-                android:textColor="#C3362C"
-                android:textSize="18sp"
-                app:autoSizeStepGranularity="2sp"
-                app:autoSizeTextType="uniform" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="50"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/strike_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="⬤"
+                    android:textColor="#009688"
+                    android:textSize="18sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/ball_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="⬤"
+                    android:textColor="#FF9800"
+                    android:textSize="18sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/out_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="⬤"
+                    android:textColor="#C3362C"
+                    android:textSize="18sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="50"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/strike_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:gravity="center_horizontal|top"
+                    android:letterSpacing="0.1"
+                    android:text="1"
+                    android:textColor="#009688"
+                    android:textSize="18sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/ball_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:gravity="center_horizontal|top"
+                    android:text="2"
+                    android:textColor="#FF9800"
+                    android:textSize="18sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/out_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:gravity="center_horizontal|top"
+                    android:text="3"
+                    android:textColor="#C3362C"
+                    android:textSize="18sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
