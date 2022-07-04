@@ -2,54 +2,73 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="6789"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_margin="5dp"
+    android:clickable="false"
+    android:longClickable="false">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textView2">
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:gravity="center_horizontal"
+        android:longClickable="false"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/input_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="⬤1" />
+            android:layout_marginStart="2pt"
+            android:clickable="false"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:text="6789"
+            android:textSize="30pt"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView6"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:text="⬤1" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="10pt"
+            android:layout_marginEnd="2pt"
+            android:clickable="false"
+            android:gravity="center"
+            android:longClickable="false"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="⬤1" />
+            <TextView
+                android:id="@+id/strike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text="⬤1"
+                android:textColor="#009688"
+                android:textSize="24pt" />
 
+            <TextView
+                android:id="@+id/ball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1pt"
+                android:layout_marginEnd="1pt"
+                android:letterSpacing="0.1"
+                android:text="⬤2"
+                android:textColor="#FF9800"
+                android:textSize="24pt" />
+
+            <TextView
+                android:id="@+id/out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text="⬤3"
+                android:textColor="#C3362C"
+                android:textSize="24pt" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
