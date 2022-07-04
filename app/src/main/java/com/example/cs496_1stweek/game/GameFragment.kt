@@ -1,5 +1,7 @@
 package com.example.cs496_1stweek.game
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.content.Context
 import android.media.Image
 import android.os.Bundle
@@ -19,15 +21,32 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.cs496_1stweek.R
 
-class GameFragment : Fragment() {
+class GameFragment : Fragment(), DialogInterface {
     private var pos = 1
     private var life = 3
     private val resultHistoryList = mutableListOf<GameHistoryItem>()
     private val adapter = GameHistoryAdapter(resultHistoryList)
+    private var numberA = getRandomNum()
 
     private fun getRandomNum(): Int {
         val randomNum = (0..9).shuffled().take(4)
+        Log.d("printed:check", "numberToGuess: " + randomNum.joinToString(separator = ""))
         return randomNum.joinToString(separator = "").toInt()
+    }
+
+    override fun cancel() {
+        for(x in 1..resultHistoryList.size) {
+            resultHistoryList.removeAt(0)
+        }
+        adapter.notifyDataSetChanged()
+        pos = 1
+        life = 3
+        numberA = getRandomNum()
+        return
+    }
+
+    override fun dismiss() {
+        return
     }
 
     private fun getResult(answer: Int,ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView) {
@@ -66,7 +85,7 @@ class GameFragment : Fragment() {
         pos = 1
 
         if(life <= 0) {
-            val deadDialog : GameDeadPopup = GameDeadPopup(answerToString).getInstance(answerToString)
+            val deadDialog : GameDeadPopup = GameDeadPopup(this, answerToString).getInstance(this, answerToString)
             activity?.supportFragmentManager?.let{
                 fragmentManager -> deadDialog.show(fragmentManager, "You're Dead")
             }
@@ -170,9 +189,6 @@ class GameFragment : Fragment() {
 
         val imageview : ImageView = gameView.findViewById(R.id.imageView)
         imageview.setImageResource(R.drawable.bombimage)
-
-        val numberA = getRandomNum()
-        Log.d("printed:numberToGuess", numberA.toString())
 
         val writeButton1 : ImageButton = gameView.findViewById(R.id.button1)
         val writeButton2 : ImageButton = gameView.findViewById(R.id.button2)
