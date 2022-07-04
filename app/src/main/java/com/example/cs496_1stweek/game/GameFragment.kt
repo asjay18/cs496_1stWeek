@@ -1,14 +1,12 @@
 package com.example.cs496_1stweek.game
 
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.GridView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.cs496_1stweek.R
@@ -24,7 +22,7 @@ class GameFragment : Fragment() {
         return randomNum.joinToString(separator = "").toInt()
     }
 
-    private fun getResult(answer: Int,ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView): Array<Int> {
+    private fun getResult(answer: Int, ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView): Array<Int> {
         if(ans1_t.text==" "||ans2_t.text==" "||ans3_t.text==" "||ans4_t.text==" "){
             Toast.makeText(requireContext(),"4자리 숫자를 입력해주세요", Toast.LENGTH_SHORT).show()
             return arrayOf(0,0,0)
@@ -55,6 +53,11 @@ class GameFragment : Fragment() {
         } else {
             resultHistoryList.add(GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
             adapter.notifyDataSetChanged()
+            ans1_t.text=" "
+            ans2_t.text=" "
+            ans3_t.text=" "
+            ans4_t.text=" "
+            pos = 1
         }
 
         /*if(life==0) Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
@@ -70,36 +73,55 @@ class GameFragment : Fragment() {
                 if(ans2_t.text==num.toString()){ ans2_t.text=" " }
                 else if(ans3_t.text==num.toString()){ ans3_t.text=" " }
                 else if(ans4_t.text==num.toString()){ ans4_t.text=" " }
-                ans1.setImageResource(R.drawable.button_default)
-                ans2.setImageResource(R.drawable.input_text)
             }
             2 -> {
                 ans2_t.text=num.toString()
                 if(ans1_t.text==num.toString()){ ans1_t.text=" " }
                 else if(ans3_t.text==num.toString()){ ans3_t.text=" " }
                 else if(ans4_t.text==num.toString()){ ans4_t.text=" " }
-                ans2.setImageResource(R.drawable.button_default)
-                ans3.setImageResource(R.drawable.input_text)
             }
             3 -> {
                 ans3_t.text=num.toString()
                 if(ans1_t.text==num.toString()){ ans1_t.text=" " }
                 else if(ans2_t.text==num.toString()){ ans2_t.text=" " }
                 else if(ans4_t.text==num.toString()){ ans4_t.text=" " }
-                ans3.setImageResource(R.drawable.button_default)
-                ans4.setImageResource(R.drawable.input_text)
             }
-            else -> {
+            4 -> {
                 ans4_t.text=num.toString()
                 if(ans1_t.text==num.toString()){ ans1_t.text=" " }
                 else if(ans2_t.text==num.toString()){ ans2_t.text=" " }
                 else if(ans3_t.text==num.toString()){ ans3_t.text=" " }
-                ans4.setImageResource(R.drawable.button_default)
-                ans1.setImageResource(R.drawable.input_text)
             }
         }
-
-        if(pos++==4) pos=1
+        if(ans1_t.text == " " || ans1_t.text == "") {
+            ans1.setImageResource(R.drawable.input_text)
+            ans2.setImageResource(R.drawable.button_default)
+            ans3.setImageResource(R.drawable.button_default)
+            ans4.setImageResource(R.drawable.button_default)
+            pos = 1
+        }
+        else if(ans2_t.text == " " || ans2_t.text == "") {
+            ans2.setImageResource(R.drawable.input_text)
+            ans1.setImageResource(R.drawable.button_default)
+            ans3.setImageResource(R.drawable.button_default)
+            ans4.setImageResource(R.drawable.button_default)
+            pos = 2
+        }
+        else if(ans3_t.text == " " || ans3_t.text == "") {
+            ans3.setImageResource(R.drawable.input_text)
+            ans2.setImageResource(R.drawable.button_default)
+            ans1.setImageResource(R.drawable.button_default)
+            ans4.setImageResource(R.drawable.button_default)
+            pos = 3
+        }
+        else if(ans4_t.text == " " || ans4_t.text == "") {
+            ans4.setImageResource(R.drawable.input_text)
+            ans2.setImageResource(R.drawable.button_default)
+            ans3.setImageResource(R.drawable.button_default)
+            ans1.setImageResource(R.drawable.button_default)
+            pos = 4
+        }
+        else pos = 5
     }
 
     private fun changePos(to: Int, ans1: ImageButton, ans2: ImageButton, ans3: ImageButton, ans4: ImageButton){
@@ -171,7 +193,12 @@ class GameFragment : Fragment() {
         answerButton3.setOnClickListener { changePos(3, answerButton1, answerButton2, answerButton3, answerButton4) }
         answerButton4.setOnClickListener { changePos(4, answerButton1, answerButton2, answerButton3, answerButton4) }
 
-        enterButton.setOnClickListener { getResult(numberA, ans1_text, ans2_text, ans3_text, ans4_text) }
+        enterButton.setOnClickListener {
+            answerButton1.setImageResource(R.drawable.input_text)
+            answerButton2.setImageResource(R.drawable.button_default)
+            answerButton3.setImageResource(R.drawable.button_default)
+            answerButton4.setImageResource(R.drawable.button_default)
+            getResult(numberA, ans1_text, ans2_text, ans3_text, ans4_text) }
 
         return gameView
     }
