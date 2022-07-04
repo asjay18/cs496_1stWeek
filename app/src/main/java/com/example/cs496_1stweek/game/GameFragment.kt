@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -20,13 +22,13 @@ class GameFragment : Fragment() {
         return randomNum.joinToString(separator = "").toInt()
     }
 
-    private fun getResult(answer: Int, ans1: Button, ans2: Button, ans3: Button, ans4: Button): Array<Int> {
-        if(ans1.text==" "||ans2.text==" "||ans3.text==" "||ans4.text==" "){
+    private fun getResult(answer: Int,ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView): Array<Int> {
+        if(ans1_t.text==" "||ans2_t.text==" "||ans3_t.text==" "||ans4_t.text==" "){
             Toast.makeText(requireContext(),"4자리 숫자를 입력해주세요", Toast.LENGTH_SHORT).show()
             return arrayOf(0,0,0)
         }
 
-        val currentAnswer : String = ans1.text.toString() + ans2.text + ans3.text + ans4.text
+        val currentAnswer : String = ans1_t.text.toString() + ans2_t.text + ans3_t.text + ans4_t.text
 
         var strike = 0
         var ball = 0
@@ -51,57 +53,57 @@ class GameFragment : Fragment() {
         return arrayOf(strike, ball, out)
     }
 
-    private fun writeOnButtons(num: Int, ans1:Button, ans2: Button, ans3: Button, ans4: Button) {
+    private fun writeOnButtons(num:Int, ans1:ImageButton, ans2:ImageButton, ans3:ImageButton, ans4:ImageButton, ans1_t:TextView, ans2_t:TextView, ans3_t:TextView, ans4_t:TextView) {
         when (pos) {
             1 -> {
-                ans1.text=num.toString()
-                if(ans2.text==num.toString()){ ans2.text=" " }
-                else if(ans3.text==num.toString()){ ans3.text=" " }
-                else if(ans4.text==num.toString()){ ans4.text=" " }
-                ans1.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.purple_500)
-                ans2.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.light_blue)
+                ans1_t.text=num.toString()
+                if(ans2_t.text==num.toString()){ ans2_t.text=" " }
+                else if(ans3_t.text==num.toString()){ ans3_t.text=" " }
+                else if(ans4_t.text==num.toString()){ ans4_t.text=" " }
+                ans1.setImageResource(R.drawable.button_default)
+                ans2.setImageResource(R.drawable.input_text)
             }
             2 -> {
-                ans2.text=num.toString()
-                if(ans1.text==num.toString()){ ans1.text=" " }
-                else if(ans3.text==num.toString()){ ans3.text=" " }
-                else if(ans4.text==num.toString()){ ans4.text=" " }
-                ans2.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.purple_500)
-                ans3.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.light_blue)
+                ans2_t.text=num.toString()
+                if(ans1_t.text==num.toString()){ ans1_t.text=" " }
+                else if(ans3_t.text==num.toString()){ ans3_t.text=" " }
+                else if(ans4_t.text==num.toString()){ ans4_t.text=" " }
+                ans2.setImageResource(R.drawable.button_default)
+                ans3.setImageResource(R.drawable.input_text)
             }
             3 -> {
-                ans3.text=num.toString()
-                if(ans1.text==num.toString()){ ans1.text=" " }
-                else if(ans2.text==num.toString()){ ans2.text=" " }
-                else if(ans4.text==num.toString()){ ans4.text=" " }
-                ans3.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.purple_500)
-                ans4.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.light_blue)
+                ans3_t.text=num.toString()
+                if(ans1_t.text==num.toString()){ ans1_t.text=" " }
+                else if(ans2_t.text==num.toString()){ ans2_t.text=" " }
+                else if(ans4_t.text==num.toString()){ ans4_t.text=" " }
+                ans3.setImageResource(R.drawable.button_default)
+                ans4.setImageResource(R.drawable.input_text)
             }
             else -> {
-                ans4.text=num.toString()
-                if(ans1.text==num.toString()){ ans1.text=" " }
-                else if(ans2.text==num.toString()){ ans2.text=" " }
-                else if(ans3.text==num.toString()){ ans3.text=" " }
-                ans4.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.purple_500)
-                ans1.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.light_blue)
+                ans4_t.text=num.toString()
+                if(ans1_t.text==num.toString()){ ans1_t.text=" " }
+                else if(ans2_t.text==num.toString()){ ans2_t.text=" " }
+                else if(ans3_t.text==num.toString()){ ans3_t.text=" " }
+                ans4.setImageResource(R.drawable.button_default)
+                ans1.setImageResource(R.drawable.input_text)
             }
         }
 
         if(pos++==4) pos=1
     }
 
-    private fun changePos(to: Int, ans1: Button, ans2: Button, ans3: Button, ans4: Button){
+    private fun changePos(to: Int, ans1: ImageButton, ans2: ImageButton, ans3: ImageButton, ans4: ImageButton){
         when (pos) {
-            1 -> ans1.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_500)
-            2 -> ans2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_500)
-            3 -> ans3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_500)
-            4 -> ans4.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_500)
+            1 -> ans1.setImageResource(R.drawable.button_default)
+            2 -> ans2.setImageResource(R.drawable.button_default)
+            3 -> ans3.setImageResource(R.drawable.button_default)
+            4 -> ans4.setImageResource(R.drawable.button_default)
         }
         when (to) {
-            1 -> ans1.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_blue)
-            2 -> ans2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_blue)
-            3 -> ans3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_blue)
-            4 -> ans4.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_blue)
+            1 -> ans1.setImageResource(R.drawable.input_text)
+            2 -> ans2.setImageResource(R.drawable.input_text)
+            3 -> ans3.setImageResource(R.drawable.input_text)
+            4 -> ans4.setImageResource(R.drawable.input_text)
         }
         pos=to
         return
@@ -117,41 +119,46 @@ class GameFragment : Fragment() {
         val numberA = getRandomNum()
         Log.d("printed:numberToGuess", numberA.toString())
 
-        val writeButton1 : Button = gameView.findViewById(R.id.button1)
-        val writeButton2 : Button = gameView.findViewById(R.id.button2)
-        val writeButton3 : Button = gameView.findViewById(R.id.button3)
-        val writeButton4 : Button = gameView.findViewById(R.id.button4)
-        val writeButton5 : Button = gameView.findViewById(R.id.button5)
-        val writeButton6 : Button = gameView.findViewById(R.id.button6)
-        val writeButton7 : Button = gameView.findViewById(R.id.button7)
-        val writeButton8 : Button = gameView.findViewById(R.id.button8)
-        val writeButton9 : Button = gameView.findViewById(R.id.button9)
-        val writeButton0 : Button = gameView.findViewById(R.id.button0)
+        val writeButton1 : ImageButton = gameView.findViewById(R.id.button1)
+        val writeButton2 : ImageButton = gameView.findViewById(R.id.button2)
+        val writeButton3 : ImageButton = gameView.findViewById(R.id.button3)
+        val writeButton4 : ImageButton = gameView.findViewById(R.id.button4)
+        val writeButton5 : ImageButton = gameView.findViewById(R.id.button5)
+        val writeButton6 : ImageButton = gameView.findViewById(R.id.button6)
+        val writeButton7 : ImageButton = gameView.findViewById(R.id.button7)
+        val writeButton8 : ImageButton = gameView.findViewById(R.id.button8)
+        val writeButton9 : ImageButton = gameView.findViewById(R.id.button9)
+        val writeButton0 : ImageButton = gameView.findViewById(R.id.button0)
 
-        val answerButton1 : Button = gameView.findViewById(R.id.answer1)
-        val answerButton2 : Button = gameView.findViewById(R.id.answer2)
-        val answerButton3 : Button = gameView.findViewById(R.id.answer3)
-        val answerButton4 : Button = gameView.findViewById(R.id.answer4)
+        val answerButton1 : ImageButton = gameView.findViewById(R.id.answer1)
+        val answerButton2 : ImageButton = gameView.findViewById(R.id.answer2)
+        val answerButton3 : ImageButton = gameView.findViewById(R.id.answer3)
+        val answerButton4 : ImageButton = gameView.findViewById(R.id.answer4)
+
+        val ans1_text : TextView = gameView.findViewById(R.id.ans1_text)
+        val ans2_text : TextView = gameView.findViewById(R.id.ans2_text)
+        val ans3_text : TextView = gameView.findViewById(R.id.ans3_text)
+        val ans4_text : TextView = gameView.findViewById(R.id.ans4_text)
 
         val enterButton : Button = gameView.findViewById(R.id.see_result_button)
 
-        writeButton1.setOnClickListener { writeOnButtons(1, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton2.setOnClickListener { writeOnButtons(2, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton3.setOnClickListener { writeOnButtons(3, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton4.setOnClickListener { writeOnButtons(4, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton5.setOnClickListener { writeOnButtons(5, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton6.setOnClickListener { writeOnButtons(6, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton7.setOnClickListener { writeOnButtons(7, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton8.setOnClickListener { writeOnButtons(8, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton9.setOnClickListener { writeOnButtons(9, answerButton1, answerButton2, answerButton3, answerButton4) }
-        writeButton0.setOnClickListener { writeOnButtons(0, answerButton1, answerButton2, answerButton3, answerButton4) }
+        writeButton1.setOnClickListener { writeOnButtons(1, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton2.setOnClickListener { writeOnButtons(2, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton3.setOnClickListener { writeOnButtons(3, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton4.setOnClickListener { writeOnButtons(4, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton5.setOnClickListener { writeOnButtons(5, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton6.setOnClickListener { writeOnButtons(6, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton7.setOnClickListener { writeOnButtons(7, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton8.setOnClickListener { writeOnButtons(8, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton9.setOnClickListener { writeOnButtons(9, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
+        writeButton0.setOnClickListener { writeOnButtons(0, answerButton1, answerButton2, answerButton3, answerButton4, ans1_text, ans2_text, ans3_text, ans4_text) }
 
         answerButton1.setOnClickListener { changePos(1, answerButton1, answerButton2, answerButton3, answerButton4) }
         answerButton2.setOnClickListener { changePos(2, answerButton1, answerButton2, answerButton3, answerButton4) }
         answerButton3.setOnClickListener { changePos(3, answerButton1, answerButton2, answerButton3, answerButton4) }
         answerButton4.setOnClickListener { changePos(4, answerButton1, answerButton2, answerButton3, answerButton4) }
 
-        enterButton.setOnClickListener { getResult(numberA, answerButton1, answerButton2, answerButton3, answerButton4) }
+        enterButton.setOnClickListener { getResult(numberA, ans1_text, ans2_text, ans3_text, ans4_text) }
 
         return gameView
     }
