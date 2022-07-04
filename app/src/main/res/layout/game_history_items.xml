@@ -30,7 +30,7 @@
             android:linksClickable="false"
             android:longClickable="false"
             android:text="6789"
-            android:textSize="28sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:autoSizeStepGranularity="2sp"
             app:autoSizeTextType="uniform" />
@@ -39,7 +39,7 @@
             android:id="@+id/linearLayout3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center|center_horizontal"
+            android:layout_gravity="center|center_horizontal|center_vertical"
             android:layout_weight="50"
             android:baselineAligned="false"
             android:clickable="false"
@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/strike"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:gravity="center"
                 android:letterSpacing="0.1"
@@ -63,7 +63,7 @@
             <TextView
                 android:id="@+id/ball"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:gravity="center"
                 android:letterSpacing="0.1"
@@ -76,7 +76,7 @@
             <TextView
                 android:id="@+id/out"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:gravity="center"
                 android:letterSpacing="0.1"
