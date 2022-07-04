@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.cs496_1stweek.R
 
-class GameDeadPopup(dialogInterface: DialogInterface, num: String) : DialogFragment()  {
+class GameWinPopup (dialogInterface: DialogInterface, num: String) : DialogFragment() {
     val num1: String = num
     private var dialogInterface : DialogInterface? = null
     init {
@@ -26,18 +26,16 @@ class GameDeadPopup(dialogInterface: DialogInterface, num: String) : DialogFragm
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.dead_dialog, container, false)
-        val answerTextView : TextView = view.findViewById(R.id.correct_answer)
-        val retryButton: Button = view.findViewById(R.id.retry_button)
+        val view = inflater.inflate(R.layout.win_dialog, container, false)
+        val answerTextView : TextView = view.findViewById(R.id.correct_answer2)
+        val retryButton: Button = view.findViewById(R.id.again_button)
         answerTextView.text = num1
         retryButton.setOnClickListener {
             this.dialogInterface?.cancel()
             dismiss()
-            //GameFragment().refreshPage()
-            //refresh
         }
         return view
     }
 
-    fun getInstance(dialogInterface: DialogInterface, num: String): GameDeadPopup { return GameDeadPopup(dialogInterface, num) }
+    fun getInstance(dialogInterface: DialogInterface, num: String): GameWinPopup { return GameWinPopup(dialogInterface, num) }
 }

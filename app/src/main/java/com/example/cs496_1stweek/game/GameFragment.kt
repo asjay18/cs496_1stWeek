@@ -22,6 +22,8 @@ import androidx.navigation.ui.NavigationUI
 import com.example.cs496_1stweek.R
 
 class GameFragment : Fragment(), DialogInterface {
+    private var canPlay = true
+    private var lose = false
     private var pos = 1
     private var life = 3
     private val resultHistoryList = mutableListOf<GameHistoryItem>()
@@ -42,6 +44,8 @@ class GameFragment : Fragment(), DialogInterface {
         pos = 1
         life = 3
         numberA = getRandomNum()
+        canPlay = true
+        lose = false
         return
     }
 
@@ -85,15 +89,23 @@ class GameFragment : Fragment(), DialogInterface {
         pos = 1
 
         if(life <= 0) {
+            canPlay=false
+            lose=true
             val deadDialog : GameDeadPopup = GameDeadPopup(this, answerToString).getInstance(this, answerToString)
             activity?.supportFragmentManager?.let{
                 fragmentManager -> deadDialog.show(fragmentManager, "You're Dead")
             }
-            Toast.makeText(requireContext(), "3 out, you're dead", Toast.LENGTH_SHORT).show()
         }
         if(life >= 0) {
             resultHistoryList.add(0, GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString(), (resultHistoryList.size+1).toString()))
             adapter.notifyDataSetChanged()
+            if(strike==4){
+                canPlay=false
+                val winDialog : GameWinPopup = GameWinPopup(this, answerToString).getInstance(this, answerToString)
+                activity?.supportFragmentManager?.let{
+                        fragmentManager -> winDialog.show(fragmentManager, "You're Dead")
+                }
+            }
         }
     }
 
@@ -234,7 +246,26 @@ class GameFragment : Fragment(), DialogInterface {
             answerButton2.setImageResource(R.drawable.button_default)
             answerButton3.setImageResource(R.drawable.button_default)
             answerButton4.setImageResource(R.drawable.button_default)
-            getResult(numberA, ans1_text, ans2_text, ans3_text, ans4_text) }
+            if(canPlay) getResult(numberA, ans1_text, ans2_text, ans3_text, ans4_text)
+            else{
+                ans1_text.text=" "
+                ans2_text.text=" "
+                ans3_text.text=" "
+                ans4_text.text=" "
+                if(lose){
+                    val deadDialog : GameDeadPopup = GameDeadPopup(this, ("0"+numberA.toString()).takeLast(4)).getInstance(this, ("0"+numberA.toString()).takeLast(4))
+                    activity?.supportFragmentManager?.let{
+                            fragmentManager -> deadDialog.show(fragmentManager, "You're Dead")
+                    }
+                }
+                else{
+                    val winDialog : GameWinPopup = GameWinPopup(this, ("0"+numberA.toString()).takeLast(4)).getInstance(this, ("0"+numberA.toString()).takeLast(4))
+                    activity?.supportFragmentManager?.let{
+                            fragmentManager -> winDialog.show(fragmentManager, "You're Dead")
+                    }
+                }
+            }
+        }
 
         return gameView
     }
