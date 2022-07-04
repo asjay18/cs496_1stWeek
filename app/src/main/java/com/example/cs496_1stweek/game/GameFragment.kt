@@ -123,7 +123,13 @@ class GameFragment : Fragment() {
             ans1.setImageResource(R.drawable.button_default)
             pos = 4
         }
-        else pos = 5
+        else {
+            ans1.setImageResource(R.drawable.button_default)
+            ans2.setImageResource(R.drawable.button_default)
+            ans3.setImageResource(R.drawable.button_default)
+            ans4.setImageResource(R.drawable.button_default)
+            pos = 5
+        }
     }
 
     private fun changePos(to: Int, ans1: ImageButton, ans2: ImageButton, ans3: ImageButton, ans4: ImageButton){
