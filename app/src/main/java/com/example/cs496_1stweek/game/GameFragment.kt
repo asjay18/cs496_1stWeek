@@ -2,6 +2,7 @@ package com.example.cs496_1stweek.game
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.Context
 import android.media.Image
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.cs496_1stweek.R
 
 class GameFragment : Fragment(), DialogInterface {
@@ -53,11 +61,12 @@ class GameFragment : Fragment(), DialogInterface {
         var ball = 0
 
         var answerToString = answer.toString()
+        if(answer<1000){
+            answerToString = "0"+answerToString
+        }
 
         if(answer == currentAnswer.toInt()) strike = 4
         else{
-            var answerToString = answer.toString()
-            if(answer<1000){ answerToString = "0"+answerToString }
             for (i in 0 until 4) {
                 if (answerToString[i]==currentAnswer[i]) strike++
                 for (j in 0 until 4){
@@ -85,7 +94,6 @@ class GameFragment : Fragment(), DialogInterface {
         if(life >= 0) {
             resultHistoryList.add(0, GameHistoryItem(currentAnswer, strike.toString(), ball.toString(), out.toString()))
             adapter.notifyDataSetChanged()
-
         }
     }
 

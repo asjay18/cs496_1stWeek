@@ -37,6 +37,7 @@ class GameDeadPopup(dialogInterface: DialogInterface, num: String) : DialogFragm
         retryButton.setOnClickListener {
             this.dialogInterface?.cancel()
             dismiss()
+            //GameFragment().refreshPage()
             //refresh
         }
         return view
