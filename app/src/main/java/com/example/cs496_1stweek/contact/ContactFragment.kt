@@ -2,21 +2,24 @@ package com.example.cs496_1stweek.contact
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs496_1stweek.R
 
+
 class ContactFragment : Fragment() {
 
+    private var canCall = false
     @SuppressLint("Recycle")
     fun loadContact() : MutableList<ContactItem> {
         // 전화번호
@@ -34,6 +37,7 @@ class ContactFragment : Fragment() {
 
         while(cursor?.moveToNext() == true) {
             val name = cursor.getString(0)
+            Log.d("check", cursor.getString(1))
             val number = cursor.getString(1)
             var pic = cursor.getString(2)
             // 개별 전화번호 데이터 생성
@@ -58,33 +62,29 @@ class ContactFragment : Fragment() {
         val contactItemList = mutableListOf<ContactItem>()
         val adapter = ContactAdapter(contactItemList)
 
-        val requestPermissionLauncher =
-            registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
+        adapter.onItemClick = {
+            val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.data = Uri.parse("tel:"+it.phoneNum)
+            startActivity(callIntent)
+        }
+
+        val askMultiplePermissionsLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { map ->
+            for (entry in map.entries) {
+                if(entry.key == "android.permission.READ_CONTACTS" && entry.value == true && contactItemList.size == 0) {
                     val numbersIterator = loadContact().iterator()
                     while(numbersIterator.hasNext()) {
                         contactItemList.add(numbersIterator.next())
                     }
                     adapter.notifyDataSetChanged()
-                } else {
-                    Toast.makeText(activity,"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();
+                }
+                if(entry.key == "android.permission.CALL_PHONE" && entry.value == true) {
+                    canCall = true
                 }
             }
-
-        when{
-            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED -> {
-                val numbersIterator = loadContact().iterator()
-                while(numbersIterator.hasNext()) {
-                    contactItemList.add(numbersIterator.next())
-                }
-            }
-            else->{
-                Toast.makeText(activity,"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();
-                requestPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
-            }
+            if(map.values.contains(false)) Toast.makeText(activity,"앱을 사용하기 위해서 권한을 허용해야합니다.",Toast.LENGTH_SHORT).show();
         }
+
+        askMultiplePermissionsLauncher.launch(arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE))
 
         recycleView.adapter = adapter
         return contactView
