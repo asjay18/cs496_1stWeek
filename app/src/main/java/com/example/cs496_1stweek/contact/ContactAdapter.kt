@@ -3,6 +3,7 @@ package com.example.cs496_1stweek.contact
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -13,10 +14,13 @@ class ContactAdapter (
     private var dataset: List<ContactItem>
 ) : RecyclerView.Adapter<ContactAdapter.ItemViewHolder>() {
 
+    var onItemClick : ((ContactItem) -> Unit)? = null
+
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val pic: ImageView = view.findViewById(R.id.contact_pic)
         val contactName: TextView = view.findViewById(R.id.contact_name)
         val phoneNum: TextView = view.findViewById(R.id.contact_phoneNum)
+        val callbtn: Button = view.findViewById(R.id.calllbutton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -34,6 +38,9 @@ class ContactAdapter (
         }
         holder.contactName.text = item.name
         holder.phoneNum.text = item.phoneNum
+        holder.callbtn.setOnClickListener {
+            onItemClick?.invoke(item)
+        }
     }
 
     override fun getItemCount(): Int {

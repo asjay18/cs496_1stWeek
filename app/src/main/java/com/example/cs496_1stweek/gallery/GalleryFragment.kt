@@ -68,7 +68,6 @@ class GalleryFragment : Fragment() {
             galleryItemList.remove(it)
             adapter.notifyDataSetChanged()
         }
-        Log.d("checking", galleryItemList.size.toString())
         //loadImages()
         return galleryView
     }

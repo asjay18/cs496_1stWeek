@@ -200,7 +200,7 @@ class GameFragment : Fragment(), DialogInterface {
         gridView.adapter = adapter
 
         val imageview : ImageView = gameView.findViewById(R.id.imageView)
-        imageview.setImageResource(R.drawable.bombimage)
+        imageview.setImageResource(R.drawable.baseball)
 
         val writeButton1 : ImageButton = gameView.findViewById(R.id.button1)
         val writeButton2 : ImageButton = gameView.findViewById(R.id.button2)
@@ -265,6 +265,18 @@ class GameFragment : Fragment(), DialogInterface {
                     }
                 }
             }
+        }
+        val restartbtn : ImageButton = gameView.findViewById(R.id.restartbtn)
+        restartbtn.setOnClickListener {
+            ans1_text.text=" "
+            ans2_text.text=" "
+            ans3_text.text=" "
+            ans4_text.text=" "
+            answerButton1.setImageResource(R.drawable.input_text)
+            answerButton2.setImageResource(R.drawable.button_default)
+            answerButton3.setImageResource(R.drawable.button_default)
+            answerButton4.setImageResource(R.drawable.button_default)
+            cancel()
         }
 
         return gameView
