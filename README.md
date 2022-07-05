@@ -14,16 +14,17 @@
 * Target Device: Galaxy Note 10 Plus
 ## 프로젝트 소개
 ### TAB 1: 연락처
-![tab2](https://user-images.githubusercontent.com/93732046/177290886-910a7897-0030-42d3-a995-93b0741bbc40.png)
-* 휴대전화의 주소록에 접근해 저장된 사진과 이름, 전화번호를 가져와 RecyclerView로 보여준다.
+![tab1](https://user-images.githubusercontent.com/93732046/177306011-41365749-0f61-4c25-8fa7-bee8d8227a7c.png)
+* 휴대전화에 저장된 모든 연락처를 조회할 수 있다.
+* 주소록에 접근해 저장된 사진과 이름, 전화번호를 가져와 RecyclerView로 보여준다.
 * 연락처 옆의 전화 버튼을 눌러 그 번호로 전화를 걸 수 있다.
 ### TAB 2: 갤러리
-![tab1](https://user-images.githubusercontent.com/93732046/177290867-9d32e5d9-e426-4334-8415-128985a5a32c.png)
+![tab2](https://user-images.githubusercontent.com/93732046/177290867-9d32e5d9-e426-4334-8415-128985a5a32c.png)
 * 휴대전화의 갤러리에 접근해 저장된 사진을 가져올 수 있다.
 * 사진 가져오려면 오른쪽 아래의 +(플러스) 버튼을 누른다. 연결되는 사진 앱에서 사진을 하나 선택하면 앱의 로컬 저장소에 사진의 복사본을 저장한 후 RecyclerView의 맨 위에 추가하여 보여준다.
 * 각 사진 밑의 DELETE 버튼을 눌러 사진의 복사본을 완전히 삭제할 수도 있다.
 ### TAB 3: 숫자야구
-![tab3](https://user-images.githubusercontent.com/93732046/177290909-04fb8e08-1835-4dfa-be3f-eb3d4ba5257a.png)
+![tab3](https://user-images.githubusercontent.com/93732046/177306058-5ca64d47-69f6-4f74-bd65-5771fe151afd.png)
 * 네 자리 수로 하는 숫자야구 게임을 구현했다.
 * onCreateView가 실행될 때마다 중복되는 숫자가 없는, 무작위의 새로운 네 자리의 숫자를 생성한다.
 * 아래에 있는 10개의 자판을 이용하여 네 자리 숫자를 만들어 GO 버튼을 누르면 결과를 볼 수 있다.
