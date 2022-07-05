@@ -19,6 +19,9 @@ import com.example.cs496_1stweek.R
 
 class ContactFragment : Fragment() {
 
+    private val contactItemList = mutableListOf<ContactItem>()
+    private val adapter = ContactAdapter(contactItemList)
+
     private var canCall = false
     @SuppressLint("Recycle")
     fun loadContact() : MutableList<ContactItem> {
@@ -58,9 +61,6 @@ class ContactFragment : Fragment() {
         val contactView = inflater.inflate(R.layout.contact_frag, container, false)
         val recycleView: RecyclerView = contactView.findViewById(R.id.contact_recycler_view)
 
-        val contactItemList = mutableListOf<ContactItem>()
-        val adapter = ContactAdapter(contactItemList)
-
         adapter.onItemClick = {
             val callIntent = Intent(Intent.ACTION_CALL)
             callIntent.data = Uri.parse("tel:"+it.phoneNum)
@@ -87,6 +87,18 @@ class ContactFragment : Fragment() {
 
         recycleView.adapter = adapter
         return contactView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        for(x in 1..contactItemList.size) {
+            contactItemList.removeAt(0)
+        }
+        val numbersIterator = loadContact().iterator()
+        while(numbersIterator.hasNext()) {
+            contactItemList.add(numbersIterator.next())
+        }
+        adapter.notifyDataSetChanged()
     }
 }
 

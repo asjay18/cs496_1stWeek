@@ -65,8 +65,8 @@ class Game2Fragment : Fragment(), DialogInterface {
         return gameview
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         mediaPlayer?.release()
     }
 
