@@ -16,6 +16,7 @@ CGB
 ### TAB 1: 연락처
 ![tab1](https://user-images.githubusercontent.com/93732046/177306011-41365749-0f61-4c25-8fa7-bee8d8227a7c.png)
 * 휴대전화에 저장된 모든 연락처를 조회할 수 있다.
+* 앱을 처음 열면 연락처 접근(READ_CONTACTS) 및 전화 걸기(CALL_PHONE) 권한을 묻는 창을 띄운다.
 * 주소록에 접근해 저장된 사진과 이름, 전화번호를 가져와 RecyclerView로 보여준다.
 * 연락처 옆의 전화 버튼을 눌러 그 번호로 전화를 걸 수 있다.
 ### TAB 2: 갤러리
