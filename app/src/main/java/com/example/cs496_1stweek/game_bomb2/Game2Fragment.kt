@@ -1,6 +1,7 @@
 package com.example.cs496_1stweek.game_bomb2
 
 import android.content.DialogInterface
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,10 +16,14 @@ import com.example.cs496_1stweek.game.GameDeadPopup
 class Game2Fragment : Fragment(), DialogInterface {
 
     private var allowtap = true
+    private var mediaPlayer : MediaPlayer? = null
 
     override fun cancel() {
         Log.d("check", "asd11")
         allowtap = true
+        mediaPlayer = MediaPlayer.create(context, R.raw.bombticking)
+        mediaPlayer?.start()
+        mediaPlayer?.isLooping = true
         return
     }
 
@@ -34,12 +39,16 @@ class Game2Fragment : Fragment(), DialogInterface {
         val gameview = inflater.inflate(R.layout.game2_frag, container, false)
         val button : Button = gameview.findViewById(R.id.round_button)
         val percenttext : TextView = gameview.findViewById(R.id.round_text)
+        mediaPlayer = MediaPlayer.create(context, R.raw.bombticking)
+        mediaPlayer?.start()
+        mediaPlayer?.isLooping = true
         var percent = 0
         button.setOnClickListener {
             if(allowtap) {
                 val randnum = (1..100).random()
                 if(randnum <= percent) {
                     allowtap = false
+                    mediaPlayer?.stop()
                     val deadDialog : Game2DeadPopup = Game2DeadPopup(this)
                     activity?.supportFragmentManager?.let{
                             fragmentManager -> deadDialog.show(fragmentManager, "Game2DeadPopup")
@@ -55,4 +64,11 @@ class Game2Fragment : Fragment(), DialogInterface {
         }
         return gameview
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.release()
+    }
+
+
 }
