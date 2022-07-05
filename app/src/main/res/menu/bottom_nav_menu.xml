@@ -15,11 +15,11 @@
     <item
         android:id="@+id/game_frag"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_videogame_asset_24"
-        android:title="bomb" />
+        android:icon="@drawable/ic_baseball_icon"
+        android:title="baseball" />
     <item
         android:id="@+id/game2_frag"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_videogame_asset_24"
-        android:title="bomb2" />
+        android:icon="@drawable/ic_bomb_icon"
+        android:title="bomb" />
 </menu>
