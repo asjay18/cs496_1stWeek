@@ -20,6 +20,11 @@
         android:name="com.example.cs496_1stweek.game.GameFragment"
         android:label="game_frag"
         tools:layout="@layout/game_frag" />
+    <fragment
+        android:id="@+id/game2_frag"
+        android:name="com.example.cs496_1stweek.game_bomb2.Game2Fragment"
+        android:label="game2_frag"
+        tools:layout="@layout/game2_frag" />
 
 
 </navigation>

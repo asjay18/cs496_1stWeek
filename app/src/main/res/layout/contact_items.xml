@@ -59,7 +59,7 @@
             android:id="@+id/contact_phoneNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="010-3790-9565"
+            android:text="010-3970-2891"
             android:textSize="14sp" />
     </LinearLayout>
 

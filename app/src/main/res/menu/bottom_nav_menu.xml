@@ -17,4 +17,9 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_videogame_asset_24"
         android:title="bomb" />
+    <item
+        android:id="@+id/game2_frag"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_videogame_asset_24"
+        android:title="bomb2" />
 </menu>
