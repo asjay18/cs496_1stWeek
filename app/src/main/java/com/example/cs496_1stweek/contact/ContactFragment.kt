@@ -37,7 +37,6 @@ class ContactFragment : Fragment() {
 
         while(cursor?.moveToNext() == true) {
             val name = cursor.getString(0)
-            Log.d("check", cursor.getString(1))
             val number = cursor.getString(1)
             var pic = cursor.getString(2)
             // 개별 전화번호 데이터 생성
